@@ -18,5 +18,9 @@ public interface ServiceProvider {
     String deleteServer(Integer serverId);
 
 
+    ArrayList<Server> getUpServers(ArrayList<Server> serverGroup);
+
     Server getTargetServer();
+
+    void updateServerLoad(int serverId);
 }
