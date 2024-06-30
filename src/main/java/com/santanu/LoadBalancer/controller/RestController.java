@@ -28,6 +28,8 @@ public class RestController {
     // expose endpoint to add an employee
     @PostMapping("/servers")
     public String addUser(@RequestBody Server server) {
+        server.setCurrentLoad(0L);
+        server.setStatus(true);
         return serviceProviderImpl.addServer(server);
     }
 
