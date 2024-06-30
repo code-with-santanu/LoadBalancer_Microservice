@@ -15,10 +15,10 @@ public class Server {
 
     private int id;
 
-    @Nullable
+    @NonNull
     private String serverIp;
 
-    @Nullable
+    @NonNull
     private int port;
 
     @NonNull

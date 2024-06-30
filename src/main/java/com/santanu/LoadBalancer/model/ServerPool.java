@@ -1,12 +1,12 @@
 package com.santanu.LoadBalancer.model;
 
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -16,15 +16,17 @@ public class ServerPool {
     private ArrayList<Server> serverGroup = new ArrayList<Server>();
 
     @Getter
-    private Integer totalServers;
+    @Value("0")
+    private Integer totalServers; // serverId starts with 0
 
     public ServerPool() {
-        this.totalServers = 0;
     }
 
     // To add single server to serverPool
     public void addServer(Server server)
     {
+        // set the serverId
+        server.setId(totalServers);
         serverGroup.add(server);
         totalServers++;
     }
@@ -36,40 +38,29 @@ public class ServerPool {
     }
 
     // Return all the servers
-    public List<Server> getAllServers()
+    public ArrayList<Server> getAllServers()
     {
         return serverGroup;
     }
 
+    public Server getServerById(int serveId) {
+        return serverGroup.get(serveId);
+    }
+
     // Update a server information
-    public String updateServer(int id, Server server) {
+    public Server updateServer(int id, Server server) {
         serverGroup.set(id,server);
-        return "Updated server : "+ serverGroup.get(id);
+        return serverGroup.get(id);
     }
 
     // Delete a server
-    public String deleteServer(int id) {
+    public Server deleteServer(int id) {
         Server server = serverGroup.get(id);
         serverGroup.remove(id);
 
-        return server + " is deleted";
+        return server;
     }
 
-    // Return list of active servers
-    public ArrayList<Server> getUpServers()
-    {
-        ArrayList<Server> serverCache = new ArrayList<>();
-
-        for (Server server : serverGroup)
-        {
-            if(server.getStatus())
-            {
-                serverCache.add(server);
-            }
-        }
-
-        return serverCache;
-    }
 
     // Check and update the servers health after every 30s
     @Scheduled(initialDelay = 2,fixedDelay = 30,timeUnit = TimeUnit.SECONDS)
