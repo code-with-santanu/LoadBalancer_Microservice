@@ -14,12 +14,10 @@ import java.util.List;
 public class ServiceProviderImpl implements ServiceProvider {
 
     private final ServerPool serverPool;
-    private final ServerSelectorImpl serverSelector;
 
     @Autowired
-    public ServiceProviderImpl(ServerPool serverPool, ServerSelectorImpl serverSelector) {
+    public ServiceProviderImpl(ServerPool serverPool) {
         this.serverPool = serverPool;
-        this.serverSelector = serverSelector;
     }
 
     @Override
@@ -52,12 +50,44 @@ public class ServiceProviderImpl implements ServiceProvider {
         return s.getServerURL() + " is removed";
     }
 
+
+    // Return list of active servers
+    @Override
+    public ArrayList<Server> getUpServers(ArrayList<Server> serverGroup) {
+        ArrayList<Server> serverCache = new ArrayList<>();
+
+        for (Server server : serverGroup)
+        {
+            if(server.getStatus())
+            {
+                serverCache.add(server);
+            }
+        }
+
+        return serverCache;
+    }
+
     @Override
     public Server getTargetServer() {
         // Get the list of all active servers
-        ArrayList<Server> activeServers = serverPool.getUpServers();
+        ArrayList<Server> activeServers = new ServiceProviderImpl(serverPool).getUpServers(serverPool.getAllServers());
 
+        ServerSelectorImpl serverSelector = new ServerSelectorImpl();
         // return the selected server among active servers
         return serverSelector.getServer(activeServers);
+    }
+
+    @Override
+    public void updateServerLoad(int serverId) {
+        // Increase the current active connections
+        Server s = serverPool.getServerById(serverId);
+        s.setCurrentLoad(s.getCurrentLoad()+1);
+
+        // calculate the loadFactor and set the new value
+        float lf = (float) s.getCurrentLoad() / (float) s.getMaxWeight();
+        s.setLoadFactor(lf);
+
+        // put the updated server
+        serverPool.updateServer(serverId,s);
     }
 }
