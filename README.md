@@ -1,7 +1,7 @@
 <h1 align="center">LoadBalancer Microservice</h1>
 
   <p align="center">
-   A server-side load-balancer for distributing the trafic among the web servers. For details implementation see [documentation]()
+   A server-side load-balancer for distributing the trafic among the web servers.
   </p>
 </p>
 
@@ -9,7 +9,8 @@
 
 ## About The Project
 
-A server-side load-balancer for distributing the trafic among the web servers based on the selected server by using dynamic load balancing algorithm(Weighted Least Connections)<br>
+A server-side load-balancer for distributing the trafic among the web servers based on the selected server by using dynamic load balancing algorithm(Weighted Least Connections).<br>
+For details implementation see 👉 [documentation](https://github.com/code-with-santanu/LoadBalancer_Microservice.git)<br>
 
 ### Built With
 
@@ -29,7 +30,7 @@ A server-side load-balancer for distributing the trafic among the web servers ba
 1. Clone the repository:
 
 ```bash
- git clone https://github.com/yourusername/yourproject.git
+ git clone https://github.com/code-with-santanu/LoadBalancer_Microservice.git
 ```
 
 2. Install dependencies:
