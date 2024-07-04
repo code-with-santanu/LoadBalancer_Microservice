@@ -3,6 +3,7 @@ package com.santanu.LoadBalancer.controller;
 
 import com.santanu.LoadBalancer.model.Server;
 import com.santanu.LoadBalancer.service.ServiceProviderImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class RestController {
 
     // expose endpoint to add an employee
     @PostMapping("/servers")
-    public String addUser(@RequestBody Server server) {
+    public String addUser(@Valid @RequestBody Server server) {
         server.setCurrentLoad(0L);
         server.setStatus(true);
         return serviceProviderImpl.addServer(server);
@@ -35,7 +36,7 @@ public class RestController {
 
     // expose endpoint to update an employee
     @PutMapping("/servers/{serverId}")
-    public String updateUser(@PathVariable int serverId, @RequestBody Server server) {
+    public String updateUser(@Valid @PathVariable int serverId, @RequestBody Server server) {
         return serviceProviderImpl.updateServer(serverId, server);
     }
 
