@@ -25,6 +25,21 @@ For details implementation see 👉 [documentation](https://github.com/code-with
 - [Contribution](#contribution)
 - [License](#license)
 
+<!-- FEATURES -->
+
+## Features
+
+- Dynamic load balancing algorithm for better efficiency .
+- Secured endpoints to manage server-cache (add, update, delete server info) .
+- Continuously monitored servers' health .
+- Supported multithreading and concurrency for
+  handling incoming web requests .
+- Achieved containerization for scalability and
+  portability .
+- Deployed on cloud for real-time use .
+
+<!-- USAGE -->
+
 ## Usage
 
 1. Clone the repository:
@@ -45,9 +60,7 @@ For details implementation see 👉 [documentation](https://github.com/code-with
 npm start
 ```
 
-## Features
-
-<!-- CONTRIBUTING -->
+<!-- CONTRIBUTION -->
 
 ## Contribution
 
@@ -59,13 +72,13 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch
 5. Open a Pull Request
 
-<!-- License -->
+<!-- LICENSE -->
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT LICENSE](LICENSE)
 
-<!-- Support -->
+<!-- SUPPORT -->
 
 ## ☺️ Support
 
@@ -73,13 +86,13 @@ This project is licensed under the [MIT License](LICENSE).
 
 <!-- CONTACT -->
 
-## Contact
+## 🤝 Contact
 
 More Projects
 GitHub: [Santanu Pal](https://github.com/code-with-santanu)
 
 <!-- ACKNOWLEDGEMENTS -->
 
-## Acknowledgements
+## 💻 Acknowledgements
 
 Made with ❤️ by Santanu. <br><br>
