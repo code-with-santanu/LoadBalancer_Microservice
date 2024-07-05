@@ -70,10 +70,16 @@ The load balancer provides various endpoints for managing server cache and balan
 - The base URL for sending requests to the load balancer is:
 
 ```bash
- https://loadbalancer-microservice.onrender.com/lb
+ https://loadbalancer-microservice.onrender.com
 ```
 
 ### Endpoints
+
+👉 endpoints To send request for balacing load : `/lb`
+
+- example: `https://loadbalancer-microservice.onrender.com/lb/myexample.com`
+
+👉 Other endpoints for managing server cache . . . . .
 
 1. Retrieve All Servers:
    _GET_ `/api/servers`
