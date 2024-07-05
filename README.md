@@ -10,7 +10,7 @@
 ## About The Project
 
 A server-side load-balancer for distributing the trafic among the web servers based on the selected server by using dynamic load balancing algorithm(Weighted Least Connections).<br>
-For details implementation see 👉 [documentation](https://github.com/code-with-santanu/LoadBalancer_Microservice.git)<br>
+For details implementation see 👉 [documentation](README)<br>
 
 ### Built With
 
@@ -20,8 +20,9 @@ For details implementation see 👉 [documentation](https://github.com/code-with
 
 ## Table of Contents
 
-- [Usage](#usage)
 - [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
 - [Contribution](#contribution)
 - [License](#license)
 
@@ -38,9 +39,9 @@ For details implementation see 👉 [documentation](https://github.com/code-with
   portability .
 - Deployed on cloud for real-time use .
 
-<!-- USAGE -->
+<!-- INSTALLATION -->
 
-## Usage
+## Installation
 
 1. Clone the repository:
 
@@ -51,13 +52,78 @@ For details implementation see 👉 [documentation](https://github.com/code-with
 2. Install dependencies:
 
 ```bash
- npm install
+
 ```
 
 3.  To run the project, use the following command:
 
 ```bash
-npm start
+
+```
+
+<!-- USAGE -->
+
+## Usage
+
+The load balancer provides various endpoints for managing server cache and balancing web requests.
+
+- The base URL for sending requests to the load balancer is:
+
+```bash
+ https://loadbalancer-microservice.onrender.com/lb
+```
+
+### Endpoints
+
+1. Retrieve All Servers:
+   _GET_ `/api/servers`
+
+- Returns a list of all servers in the cache.
+- For terminal usage, to make a _GET_ request :
+
+```bash
+ curl -X GET "https://loadbalancer-microservice.onrender.com/api/servers"
+```
+
+2. Add a Server:
+   _POST_ `/api/servers`
+
+- Add a new server to the cache.
+- For terminal usage, to make a _POST_ request :
+
+```bash
+ curl -X POST "https://loadbalancer-microservice.onrender.com/api/servers" -H "Content-Type: application/json" -d '{
+  "serverIp": "192.168.136.2",
+  "port" : 8080,
+  "maxWeight": 10,
+  "serverUrl": "https://myserver.example.com"
+}'
+```
+
+`NOTE:` Ensure to replace `{serverId}` with the actual server ID when making requests to the PUT and DELETE endpoints.
+
+3. Update a Server:
+   _PUT_ `/api/servers/{serverId}`
+
+- Updates an existing server's information in the cache.
+- For terminal usage, to make a _PUT_ request :
+
+```bash
+ curl -X PUT "https://loadbalancer-microservice.onrender.com/api/servers/server3" -H "Content-Type: application/json" -d '{
+  "port" : 5050,
+  "weight": 15
+}'
+```
+
+4. Delete a Server:
+   _DELETE_ `/api/servers/{serverId}`
+
+- Deletes an existing server's information in the cache.
+- For terminal usage, to make a _DELETE_ request :
+
+```bash
+ curl -X DELETE "https://loadbalancer-microservice.onrender.com/api/servers/{serverId}"
+
 ```
 
 <!-- CONTRIBUTION -->
@@ -78,11 +144,15 @@ Contributions are what make the open source community such an amazing place to b
 
 This project is licensed under the [MIT LICENSE](LICENSE)
 
+<br>
+
+---
+
 <!-- SUPPORT -->
 
 ## ☺️ Support
 
-💙 If you like this project, give it a ⭐ and share it with friends!<br><br>
+💙 If you like this project, give it a ⭐ and share it with friends!<br>
 
 <!-- CONTACT -->
 
@@ -95,4 +165,4 @@ GitHub: [Santanu Pal](https://github.com/code-with-santanu)
 
 ## 💻 Acknowledgements
 
-Made with ❤️ by Santanu. <br><br>
+Made with ❤️ by Santanu <br><br>
