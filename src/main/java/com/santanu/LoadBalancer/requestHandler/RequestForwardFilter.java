@@ -42,15 +42,17 @@ public class RequestForwardFilter implements Filter {
         String queryString = httpRequest.getQueryString(); // Extract the queryString from the request url
         System.out.println("QueryString: " + queryString);
 
-        // Construct the target URl based on the selected server by server-selector algorithm
-        ServiceProviderImpl serviceProvider = new ServiceProviderImpl(new ServerPool());
-        Server selectedServer = serviceProvider.getTargetServer();
-        String targetServerURL = selectedServer.getServerURL();
-    //    String targetServerURL = "https:/";
-        String targetURL = targetServerURL + requestURI + (queryString != null ? "?" + queryString : "");
-        System.out.println("TargetUrl: " + targetURL);
-
         try {
+            // Construct the target URl based on the selected server by server-selector algorithm
+            ServiceProviderImpl serviceProvider = new ServiceProviderImpl(new ServerPool());
+            Server selectedServer = serviceProvider.getTargetServer();
+
+            String targetServerURL = selectedServer.getServerURL();
+            //    String targetServerURL = "https:/";
+            String targetURL = targetServerURL + requestURI + (queryString != null ? "?" + queryString : "");
+            System.out.println("TargetUrl: " + targetURL);
+
+
             // A HttpURLConnection is created to the target URL by openConnection() method
             // The request method (GET, POST, etc.) is set to match the original request.
             HttpURLConnection connection = (HttpURLConnection) new URL(targetURL).openConnection();
@@ -97,9 +99,12 @@ public class RequestForwardFilter implements Filter {
                 }
             }
             System.out.println(LocalDateTime.now() + " Returned the response...");
-        } catch (IOException e) {
+        } catch (Exception e) {
             // If forwarding fails, log the error
-            e.printStackTrace();
+            System.out.println("Oops! error occurred...");
+//            e.printStackTrace();
+            httpRequest.setAttribute("jakarta.servlet.error.exception", e);
+            httpResponse.sendError(HttpServletResponse.SC_NOT_FOUND, "No active server is available this time");
 
         }
 
