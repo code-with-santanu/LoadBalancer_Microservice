@@ -79,14 +79,14 @@ The load balancer provides various endpoints for managing server cache and balan
 - The base URL for sending requests to the load balancer is:
 
 ```bash
- https://<yout-host-url>
+ http://<yout-host-url>
 ```
 
 ### <ins>Endpoints</ins> 👇
 
 👉 <ins>endpoints To send request for balancing load</ins> : `/lb`
 
-- example: `https://<your-host-url>/lb/myexample.com`
+- example: `http://<your-host-url>/lb/myexample.com`
 
 👉 Other endpoints for managing server cache . . . . .
 
@@ -97,7 +97,7 @@ The load balancer provides various endpoints for managing server cache and balan
 - For terminal usage, to make a _GET_ request :
 
 ```bash
- curl -X GET "https://<your-host-url>/api/servers"
+ curl -X GET "http://<your-host-url>/api/servers"
 ```
 
 2. Add a Server:
@@ -107,7 +107,7 @@ The load balancer provides various endpoints for managing server cache and balan
 - For terminal usage, to make a _POST_ request :
 
 ```bash
- curl -X POST "https://<your-host-url>/api/servers" -H "Content-Type: application/json" -d '{
+ curl -X POST "http://<your-host-url>/api/servers" -H "Content-Type: application/json" -d '{
   "serverIp": "192.168.136.2",
   "port" : 8080,
   "maxWeight": 10,
@@ -124,7 +124,7 @@ The load balancer provides various endpoints for managing server cache and balan
 - For terminal usage, to make a _PUT_ request :
 
 ```bash
- curl -X PUT "https://<your-host-url>/api/servers/{serverId}" -H "Content-Type: application/json" -d '{
+ curl -X PUT "http://<your-host-url>/api/servers/{serverId}" -H "Content-Type: application/json" -d '{
   "port" : 5050,
   "weight": 15
 }'
@@ -137,7 +137,7 @@ The load balancer provides various endpoints for managing server cache and balan
 - For terminal usage, to make a _DELETE_ request :
 
 ```bash
- curl -X DELETE "https://<your-host-url>/api/servers/{serverId}"
+ curl -X DELETE "http://<your-host-url>/api/servers/{serverId}"
 
 ```
 
