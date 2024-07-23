@@ -43,23 +43,32 @@ For details implementation see 👉 [documentation](README)<br>
 
 ## Installation
 
-1. Clone the repository:
+### <ins>Using Docker</ins> 👇 :
 
-```bash
- git clone https://github.com/code-with-santanu/LoadBalancer_Microservice.git
-```
+1. Install Docker in your system (follow the link for Docker Desktop installation) :
+   [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-2. Install dependencies:
+2. Pull the image from docker hub :
 
-```bash
+   ```bash
+   docker pull santanupal/loadbalancer:latest
+   ```
 
-```
+3. Run the docker image you pulled from docker hub :
+   [`P.S`: Replace `<host-port>` by a port-no you want to run it ]
 
-3.  To run the project, use the following command:
+   ```bash
+   docker run -it -d -p <host-port>:9000 santanupal/loadbalancer
+   ```
 
-```bash
+4. You can see logs of the application. [`P.S`: Replace `<container-id>` by a port-no you want to run it ]:
 
-```
+   ```bash
+   docker logs <container-id>
+   ```
+
+5. Now you are all set. [`P.S`: Replace `<host-port>` by port-no you used in step 3 ]<br>
+   your base url will be `http://localhost:<host-port>`
 
 <!-- USAGE -->
 
@@ -70,14 +79,14 @@ The load balancer provides various endpoints for managing server cache and balan
 - The base URL for sending requests to the load balancer is:
 
 ```bash
- https://loadbalancer-microservice.onrender.com
+ https://<yout-host-url>
 ```
 
-### Endpoints
+### <ins>Endpoints</ins> 👇
 
-👉 endpoints To send request for balacing load : `/lb`
+👉 <ins>endpoints To send request for balancing load</ins> : `/lb`
 
-- example: `https://loadbalancer-microservice.onrender.com/lb/myexample.com`
+- example: `https://<your-host-url>/lb/myexample.com`
 
 👉 Other endpoints for managing server cache . . . . .
 
@@ -88,7 +97,7 @@ The load balancer provides various endpoints for managing server cache and balan
 - For terminal usage, to make a _GET_ request :
 
 ```bash
- curl -X GET "https://loadbalancer-microservice.onrender.com/api/servers"
+ curl -X GET "https://<your-host-url>/api/servers"
 ```
 
 2. Add a Server:
@@ -98,7 +107,7 @@ The load balancer provides various endpoints for managing server cache and balan
 - For terminal usage, to make a _POST_ request :
 
 ```bash
- curl -X POST "https://loadbalancer-microservice.onrender.com/api/servers" -H "Content-Type: application/json" -d '{
+ curl -X POST "https://<your-host-url>/api/servers" -H "Content-Type: application/json" -d '{
   "serverIp": "192.168.136.2",
   "port" : 8080,
   "maxWeight": 10,
@@ -115,7 +124,7 @@ The load balancer provides various endpoints for managing server cache and balan
 - For terminal usage, to make a _PUT_ request :
 
 ```bash
- curl -X PUT "https://loadbalancer-microservice.onrender.com/api/servers/server3" -H "Content-Type: application/json" -d '{
+ curl -X PUT "https://<your-host-url>/api/servers/{serverId}" -H "Content-Type: application/json" -d '{
   "port" : 5050,
   "weight": 15
 }'
@@ -128,7 +137,7 @@ The load balancer provides various endpoints for managing server cache and balan
 - For terminal usage, to make a _DELETE_ request :
 
 ```bash
- curl -X DELETE "https://loadbalancer-microservice.onrender.com/api/servers/{serverId}"
+ curl -X DELETE "https://<your-host-url>/api/servers/{serverId}"
 
 ```
 
