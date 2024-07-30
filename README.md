@@ -157,7 +157,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## License
 
-This project is licensed under the [MIT LICENSE](LICENSE)
+This project is licensed under the [LICENSE](LICENSE)
 
 <br>
 
